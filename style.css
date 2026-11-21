@@ -73,6 +73,8 @@ button,input,select{font:inherit;color:inherit}
 .nav__links a{opacity:.75;transition:opacity .3s}
 .nav__links a:hover{opacity:1}
 @media (max-width:760px){.nav__links{display:none}}
+.btn,.nav__logo b{white-space:nowrap}
+@media (max-width:420px){.nav__logo b{font-size:19px}.nav__logo b small{display:none}}
 
 /* ---------- hero ---------- */
 .hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:flex-end}
