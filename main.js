@@ -244,10 +244,10 @@
 
   function counters() {
     $$("[data-count]").forEach((el) => {
-      const end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), o = { v: 0 };
+      const end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), pre = el.dataset.pre || "", o = { v: 0 };
       gsap.to(o, {
         v: end, duration: 2.2, ease: "power3.out",
-        onUpdate: () => (el.textContent = dec ? o.v.toFixed(dec) : Math.round(o.v).toLocaleString("en-IN") + (end > 1000 ? "+" : "")),
+        onUpdate: () => (el.textContent = pre + (dec ? o.v.toFixed(dec) : Math.round(o.v).toLocaleString("en-IN"))),
       });
     });
   }
@@ -368,42 +368,61 @@
   }
 
   /* ============================================================
-     LOCATIONS
+     LOCATIONS — real Prayagraj map (Leaflet + CARTO dark tiles)
      ============================================================ */
-  // Placeholder data — replace with the client's real studios
+  // Area-level coordinates (exact shop pins can be swapped in later)
   const studios = [
-    { name: "Downtown Studio", addr: "Shop 12, Central Plaza, MG Road", hours: "7:00 am to 10:00 pm", bays: 6, wait: "~10 min", tel: "+910000000001" },
-    { name: "North Avenue", addr: "Plot 4, North Avenue Main Road", hours: "7:00 am to 10:00 pm", bays: 4, wait: "~20 min", tel: "+910000000002" },
-    { name: "Airport Road", addr: "Near Metro Pillar 88, Airport Road", hours: "6:00 am to 11:00 pm", bays: 8, wait: "~5 min", tel: "+910000000003" },
-    { name: "Lakeside", addr: "Lakeside Mall, Ground Floor Parking", hours: "8:00 am to 10:00 pm", bays: 5, wait: "~15 min", tel: "+910000000004" },
+    { name: "Phaphamau", addr: "Main branch · Phaphamau, Prayagraj", type: "Main branch", ll: [25.5300, 81.8580] },
+    { name: "Naini", addr: "Ada, Naini, Prayagraj", type: "Branch", ll: [25.3890, 81.8590] },
+    { name: "Jhusi", addr: "Jhusi, Prayagraj", type: "Branch", ll: [25.4330, 81.9050] },
+    { name: "Jhalwa", addr: "Jhalwa, Prayagraj", type: "Branch", ll: [25.4250, 81.7710] },
   ];
-  const items = $$(".loc__item"), pins = $$(".pin"), card = $(".loc__card");
-  const fields = {
-    name: $(".loc__name"), addr: $(".loc__addr"), hours: $(".loc__hours"),
-    wait: $(".loc__wait"), bays: $(".loc__bays"), dir: $(".loc__dir"), call: $(".loc__call"),
-  };
+  const items = $$(".loc__item"), card = $(".loc__card");
+  const fields = { name: $(".loc__name"), addr: $(".loc__addr"), type: $(".loc__type"), dir: $(".loc__dir") };
   const fill = (s) => {
-    fields.name.textContent = s.name; fields.addr.textContent = s.addr; fields.hours.textContent = s.hours;
-    fields.wait.textContent = s.wait; fields.bays.textContent = s.bays;
-    fields.dir.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s.name + " car wash " + s.addr);
-    fields.call.href = "tel:" + s.tel;
+    fields.name.textContent = s.name; fields.addr.textContent = s.addr; fields.type.textContent = s.type;
+    fields.dir.href = `https://www.google.com/maps/dir/?api=1&destination=${s.ll[0]},${s.ll[1]}`;
   };
+  let map = null, markers = [];
+  const mobile = () => innerWidth <= 900;
+  if (window.L) {
+    map = L.map("map", { zoomControl: true, scrollWheelZoom: false, attributionControl: true });
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19, className: "qtiles",
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+    const bounds = L.latLngBounds(studios.map((s) => s.ll));
+    map.fitBounds(bounds, mobile() ? { paddingTopLeft: [30, 40], paddingBottomRight: [30, 170] } : { paddingTopLeft: [420, 50], paddingBottomRight: [50, 50] });
+    markers = studios.map((s, i) => {
+      const m = L.marker(s.ll, {
+        icon: L.divIcon({ className: "", html: `<div class="qpin${i ? "" : " is-active"}"><i></i><b>${s.name}</b></div>`, iconSize: [22, 22], iconAnchor: [11, 11] }),
+        keyboard: false, title: s.name,
+      }).addTo(map);
+      m.on("click", () => pick(i));
+      return m;
+    });
+    ScrollTrigger.create({ trigger: ".loc", start: "top 90%", once: true, onEnter: () => map.invalidateSize() });
+    addEventListener("resize", () => map.invalidateSize());
+  }
   let current = 0;
   function pick(i) {
     if (i === current) return;
     current = i;
     items.forEach((b, k) => { b.classList.toggle("is-active", k === i); b.setAttribute("aria-selected", k === i); });
-    pins.forEach((p, k) => p.classList.toggle("is-active", k === i));
+    markers.forEach((m, k) => m.getElement() && m.getElement().firstChild.classList.toggle("is-active", k === i));
+    if (map) {
+      // keep the pin clear of the info card (bottom-left on desktop, bottom on phones)
+      const z = 13, pt = map.project(studios[i].ll, z);
+      const off = mobile() ? L.point(0, -110) : L.point(170, -70);
+      map.flyTo(map.unproject(pt.subtract(off), z), z, { duration: reduce ? 0 : 1.2 });
+    }
     gsap.timeline()
       .to(card, { y: 14, opacity: 0, duration: 0.22, ease: "power2.in" })
       .add(() => fill(studios[i]))
       .to(card, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" });
-    gsap.fromTo(pins[i].querySelector(".pin__dot"), { attr: { r: 2 } }, { attr: { r: 6 }, duration: 0.6, ease: "back.out(3)" });
   }
   items.forEach((b, i) => b.addEventListener("click", () => pick(i)));
-  pins.forEach((p, i) => p.addEventListener("click", () => pick(i)));
   fill(studios[0]);
-  // keyboard: arrow keys move between studios
   $(".loc__list").addEventListener("keydown", (e) => {
     if (!["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) return;
     e.preventDefault();
@@ -414,7 +433,7 @@
   /* ============================================================
      BOOKING → WhatsApp
      ============================================================ */
-  const WHATSAPP = "910000000000"; // placeholder: client's WhatsApp number
+  const WHATSAPP = "917269858006";
   const form = $(".form"), note = $(".form__note");
   const date = form.elements.date;
   const today = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
@@ -431,7 +450,7 @@
       gsap.fromTo(form, { x: -8 }, { x: 0, duration: 0.5, ease: "elastic.out(1,0.3)" });
       return;
     }
-    const msg = `Hi Quick Wash Motors, I'd like to book:\nPackage: ${f.pkg.value}\nStudio: ${f.studio.value}\nDate: ${f.date.value} at ${f.time.value}\nName: ${f.name.value.trim()}\nPhone: ${f.phone.value.trim()}`;
+    const msg = `Hi Quick Wash Motors, I'd like to book:\nPackage: ${f.pkg.value}\nBranch: ${f.studio.value}\nService at: ${f.where.value}\nDate: ${f.date.value} at ${f.time.value}\nName: ${f.name.value.trim()}\nPhone: ${f.phone.value.trim()}`;
     note.textContent = "Opening WhatsApp to confirm your slot…";
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   });

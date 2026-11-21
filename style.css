@@ -269,3 +269,30 @@ button,input,select{font:inherit;color:inherit}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .grain{display:none}
 }
+
+/* ---- brand logo + real-data additions ---- */
+.nav__logo{color:var(--ink)}
+.nav__logo .brand{width:auto;height:46px;display:block;overflow:visible}
+@media (max-width:420px){.nav__logo .brand{height:38px}}
+.hero__sub .hi{display:block;margin-top:8px;color:var(--aqua2);font-weight:600}
+.cards{grid-template-columns:repeat(4,1fr)}
+@media (max-width:1100px){.cards{grid-template-columns:repeat(2,1fr);max-width:820px}}
+@media (max-width:640px){.cards{grid-template-columns:1fr;max-width:520px}}
+.card__time{min-height:1.6em}
+.cards__note{max-width:1300px;margin:28px auto 0;text-align:center;color:var(--mute);font-size:14px;letter-spacing:.06em}
+.map{position:absolute;inset:0;width:100%;height:100%;background:#0a0f14;z-index:0}
+.loc__card{z-index:500}
+.loc__card dd a{color:var(--aqua2)}
+.leaflet-container{font-family:var(--body);background:#0a0f14}
+.leaflet-control-attribution{background:rgba(7,9,12,.7)!important;color:#7d8a97!important;font-size:10px}
+.leaflet-control-attribution a{color:#9be8ff!important}
+.leaflet-bar a{background:#10161d!important;color:#cfe8f5!important;border-color:#233040!important}
+.qpin{position:relative;width:22px;height:22px}
+.qpin i{position:absolute;inset:5px;border-radius:50%;background:#8a97a5;box-shadow:0 0 0 3px rgba(7,9,12,.8)}
+.qpin.is-active i{background:#3fd0ff;box-shadow:0 0 0 3px rgba(7,9,12,.8),0 0 18px #3fd0ff}
+.qpin.is-active::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #3fd0ff;animation:pulse 1.8s var(--ease) infinite}
+.qpin b{position:absolute;left:26px;top:1px;white-space:nowrap;font:700 12px var(--body);color:#eef3f7;text-shadow:0 1px 4px #000;letter-spacing:.04em}
+.form__row--1{grid-template-columns:1fr}
+.book__copy .link{color:var(--aqua2)}
+@media (max-width:900px){.map{height:58%}}
+.qtiles{filter:invert(1) hue-rotate(185deg) brightness(.82) contrast(.92) saturate(.55)}

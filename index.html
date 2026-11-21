@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Quick Wash Motors | Premium Car Wash &amp; Detailing</title>
-<meta name="description" content="Foam bath, pressure rinse, hand polish and ceramic coating. 4 studios across the city. Book in 30 seconds.">
+<title>Quick Wash Motors | Car &amp; Bike Wash in Prayagraj</title>
+<meta name="description" content="Car wash from ₹349, bike wash from ₹70. Vacuum, seat cleaning and door-to-door service. 4 branches in Prayagraj: Phaphamau, Naini, Jhusi, Jhalwa.">
 <meta name="theme-color" content="#07090c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/hero.jpg">
+<link rel="stylesheet" href="assets/leaflet.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="is-loading">
@@ -30,11 +31,20 @@
 <!-- NAV -->
 <header class="nav">
   <a href="#top" class="nav__logo" aria-label="Quick Wash Motors home">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c5 7 9 11.5 9 16.5A9 9 0 0 1 7 19.5C7 14.5 11 10 16 3Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20a4 4 0 0 0 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    <b>QUICK WASH <small>MOTORS</small></b>
+    <svg class="brand" viewBox="0 0 340 104" role="img" aria-label="Quick Wash Motors">
+      <path d="M58 30 C96 10 150 4 196 8 C232 11 262 20 296 30" fill="none" stroke="#3fd0ff" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="30" cy="56" r="19" fill="none" stroke="currentColor" stroke-width="9"/>
+      <path d="M38 66 L52 80" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+      <path d="M30 42 C35 49 38 53 38 58 A8 8 0 0 1 22 58 C22 53 25 49 30 42Z" fill="#3fd0ff"/>
+      <text x="56" y="73" font-family="Manrope, Arial, sans-serif" font-weight="800" font-size="46" fill="currentColor" textLength="262" lengthAdjust="spacingAndGlyphs">UICK WASH</text>
+      <path d="M312 14 c4 6 6 9 6 12 a6 6 0 0 1 -12 0 c0 -3 2 -6 6 -12z" fill="#3fd0ff"/><circle cx="326" cy="34" r="3" fill="#3fd0ff"/>
+      <line x1="66" y1="92" x2="132" y2="92" stroke="currentColor" stroke-width="2.5"/>
+      <text x="187" y="98" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-weight="800" font-size="17" letter-spacing="6" fill="currentColor">MOTORS</text>
+      <line x1="244" y1="92" x2="318" y2="92" stroke="currentColor" stroke-width="2.5"/>
+    </svg>
   </a>
   <nav class="nav__links">
-    <a href="#process">Process</a>
+    <a href="#process">The wash</a>
     <a href="#packages">Packages</a>
     <a href="#locations">Locations</a>
   </nav>
@@ -49,12 +59,12 @@
   <canvas class="hero__fog" aria-hidden="true"></canvas>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__content">
-    <p class="eyebrow hero__eyebrow"><span class="dot"></span> 4 studios &middot; open 7am to 10pm</p>
+    <p class="eyebrow hero__eyebrow"><span class="dot"></span> 4 branches in Prayagraj &middot; Door-to-door service</p>
     <h1 class="hero__title">
       <span class="line"><span>Shine that</span></span>
       <span class="line"><span>stops <em>traffic.</em></span></span>
     </h1>
-    <p class="hero__sub">Foam bath, pressure rinse, hand polish and ceramic coating. Your car leaves looking better than the day you bought it.</p>
+    <p class="hero__sub">Car wash, bike wash, vacuum and seat cleaning at our 4 branches, or right at your doorstep. <span class="hi">अब गाड़ी की सफाई, आपके दरवाजे पर!</span></p>
     <div class="hero__cta">
       <a href="#book" class="btn">Book your slot</a>
       <a href="#process" class="link">See the ritual <i>&darr;</i></a>
@@ -62,26 +72,26 @@
   </div>
   <p class="hero__hint" aria-hidden="true"><span class="hand"></span>Wipe the glass</p>
   <div class="hero__stats">
-    <div><b data-count="48000">0</b><span>cars washed</span></div>
-    <div><b data-count="4.9" data-dec="1">0</b><span>Google rating</span></div>
-    <div><b data-count="4">0</b><span>studios</span></div>
+    <div><b data-count="349" data-pre="₹">0</b><span>car wash</span></div>
+    <div><b data-count="70" data-pre="₹">0</b><span>bike wash</span></div>
+    <div><b data-count="4">0</b><span>branches</span></div>
   </div>
 </section>
 
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track">
-    <span>Snow foam</span><i>&#10022;</i><span>Pressure rinse</span><i>&#10022;</i><span>Clay bar</span><i>&#10022;</i><span>Machine polish</span><i>&#10022;</i><span>Ceramic coat</span><i>&#10022;</i><span>Interior steam</span><i>&#10022;</i>
-    <span>Snow foam</span><i>&#10022;</i><span>Pressure rinse</span><i>&#10022;</i><span>Clay bar</span><i>&#10022;</i><span>Machine polish</span><i>&#10022;</i><span>Ceramic coat</span><i>&#10022;</i><span>Interior steam</span><i>&#10022;</i>
+    <span>Car Washing</span><i>&#10022;</i><span>Bike Washing</span><i>&#10022;</i><span>Vacuum Cleaning</span><i>&#10022;</i><span>Seat Cleaning</span><i>&#10022;</i><span>Door-to-Door Service</span><i>&#10022;</i>
+    <span>Car Washing</span><i>&#10022;</i><span>Bike Washing</span><i>&#10022;</i><span>Vacuum Cleaning</span><i>&#10022;</i><span>Seat Cleaning</span><i>&#10022;</i><span>Door-to-Door Service</span><i>&#10022;</i>
   </div>
 </div>
 
 <!-- STORY (pinned) -->
-<section class="story" id="process" aria-label="Our four-step wash ritual">
+<section class="story" id="process" aria-label="Our four-step wash">
   <div class="story__rail" aria-hidden="true">
     <div class="story__progress"><i></i></div>
     <ol>
-      <li class="is-active">Foam</li><li>Pressure</li><li>Polish</li><li>Shine</li>
+      <li class="is-active">Foam</li><li>Pressure</li><li>Detail</li><li>Shine</li>
     </ol>
   </div>
 
@@ -101,7 +111,7 @@
     <div class="panel__text">
       <span class="panel__num">02</span>
       <h2>Pressure rinse</h2>
-      <p>1,800 PSI of filtered, softened water flushes wheel arches, grilles and every gap the eye can't see.</p>
+      <p>High-pressure water flushes wheel arches, grilles and every gap the eye can't see.</p>
     </div>
   </article>
 
@@ -109,8 +119,8 @@
     <div class="panel__img"><img src="assets/polish.jpg" alt="Silver luxury sedan with a freshly polished finish" loading="lazy"></div>
     <div class="panel__text">
       <span class="panel__num">03</span>
-      <h2>Hand polish</h2>
-      <p>Two-bucket wash, clay bar, then a machine polish that pulls the depth back into tired paint.</p>
+      <h2>Inside &amp; out</h2>
+      <p>Microfibre hand finish outside, vacuum and seat cleaning inside. Every corner, every time.</p>
     </div>
   </article>
 
@@ -120,7 +130,7 @@
     <div class="panel__text">
       <span class="panel__num">04</span>
       <h2>The shine</h2>
-      <p>Ceramic sealant locks it in. Water beads and rolls off for months. Drive out and watch heads turn.</p>
+      <p>Clean ride, happy you. Drive out with a car that looks the way it should, every single time.</p>
     </div>
   </article>
 </section>
@@ -145,94 +155,80 @@
 <!-- PACKAGES -->
 <section class="packages section" id="packages">
   <div class="section__head">
-    <p class="eyebrow">Packages</p>
-    <h2 class="title reveal">Pick your level<br>of obsession.</h2>
+    <p class="eyebrow">Pricing</p>
+    <h2 class="title reveal">Simple prices.<br>Spotless results.</h2>
   </div>
   <div class="cards">
     <article class="card">
-      <p class="card__tier">Express</p>
-      <p class="card__price"><small>&#8377;</small>499</p>
-      <p class="card__time">25 min</p>
-      <ul><li>Snow foam pre-wash</li><li>Pressure rinse &amp; hand dry</li><li>Tyre dressing</li><li>Glass inside &amp; out</li></ul>
-      <a href="#book" class="btn btn--ghost" data-pkg="Express">Book Express</a>
+      <p class="card__tier">Bike Wash</p>
+      <p class="card__price"><small>&#8377;</small>70</p>
+      <p class="card__time">at branch &middot; &#8377;99 at your doorstep</p>
+      <ul><li>Showroom wash &#8377;70</li><li>Doorstep wash &#8377;99</li><li>Scooters &amp; motorcycles</li></ul>
+      <a href="#book" class="btn btn--ghost" data-pkg="Bike Wash (Showroom) ₹70">Book bike wash</a>
     </article>
     <article class="card card--hot">
       <span class="card__badge">Most booked</span>
-      <p class="card__tier">Signature</p>
-      <p class="card__price"><small>&#8377;</small>1,499</p>
-      <p class="card__time">90 min</p>
-      <ul><li>Everything in Express</li><li>Clay bar decontamination</li><li>Single-stage machine polish</li><li>Interior vacuum &amp; steam</li><li>3-month wax sealant</li></ul>
-      <a href="#book" class="btn" data-pkg="Signature">Book Signature</a>
+      <p class="card__tier">Car Wash</p>
+      <p class="card__price"><small>&#8377;</small>349</p>
+      <p class="card__time">per wash</p>
+      <ul><li>Car washing</li><li>Vacuum cleaning</li><li>Seat cleaning</li><li>Branch or doorstep</li></ul>
+      <a href="#book" class="btn" data-pkg="Car Wash ₹349">Book car wash</a>
     </article>
     <article class="card">
-      <p class="card__tier">Ceramic</p>
-      <p class="card__price"><small>&#8377;</small>14,999</p>
-      <p class="card__time">1 day</p>
-      <ul><li>Full paint correction</li><li>9H ceramic coating</li><li>Wheels &amp; glass coated</li><li>2-year protection warranty</li></ul>
-      <a href="#book" class="btn btn--ghost" data-pkg="Ceramic">Book Ceramic</a>
+      <p class="card__tier">6 Car Wash Pack</p>
+      <p class="card__price"><small>&#8377;</small>999</p>
+      <p class="card__time">offer package</p>
+      <ul><li>6 car washes</li><li>Use whenever you need</li><li>Best value per wash</li></ul>
+      <a href="#book" class="btn btn--ghost" data-pkg="6 Car Wash Pack ₹999">Book the pack</a>
+    </article>
+    <article class="card">
+      <p class="card__tier">Monthly Plan</p>
+      <p class="card__price"><small>&#8377;</small>1,249</p>
+      <p class="card__time">per month subscription</p>
+      <ul><li>Car stays clean all month</li><li>Door-to-door service</li><li>One fixed monthly price</li></ul>
+      <a href="#book" class="btn btn--ghost" data-pkg="Monthly Subscription ₹1,249">Subscribe</a>
     </article>
   </div>
+  <p class="cards__note">Car washing &middot; Bike washing &middot; Vacuum cleaning &middot; Seat cleaning &middot; Door-to-door service</p>
 </section>
 
 <!-- LOCATIONS -->
 <section class="locations section" id="locations">
   <div class="section__head">
-    <p class="eyebrow">4 studios</p>
-    <h2 class="title reveal">Never more than<br>15 minutes away.</h2>
+    <p class="eyebrow">4 branches in Prayagraj</p>
+    <h2 class="title reveal">Phaphamau to Naini.<br>We&rsquo;re close by.</h2>
   </div>
   <div class="loc">
-    <div class="loc__list" role="tablist" aria-label="Choose a studio">
-      <button class="loc__item is-active" role="tab" aria-selected="true" data-i="0"><span>01</span><b>Downtown</b><em>Open now</em></button>
-      <button class="loc__item" role="tab" aria-selected="false" data-i="1"><span>02</span><b>North Avenue</b><em>Open now</em></button>
-      <button class="loc__item" role="tab" aria-selected="false" data-i="2"><span>03</span><b>Airport Road</b><em>Open now</em></button>
-      <button class="loc__item" role="tab" aria-selected="false" data-i="3"><span>04</span><b>Lakeside</b><em>Open now</em></button>
+    <div class="loc__list" role="tablist" aria-label="Choose a branch">
+      <button class="loc__item is-active" role="tab" aria-selected="true" data-i="0"><span>01</span><b>Phaphamau</b><em>Main branch</em></button>
+      <button class="loc__item" role="tab" aria-selected="false" data-i="1"><span>02</span><b>Naini</b><em>Ada, Naini</em></button>
+      <button class="loc__item" role="tab" aria-selected="false" data-i="2"><span>03</span><b>Jhusi</b><em>Branch</em></button>
+      <button class="loc__item" role="tab" aria-selected="false" data-i="3"><span>04</span><b>Jhalwa</b><em>Branch</em></button>
     </div>
     <div class="loc__map">
-      <svg class="map" viewBox="0 0 600 440" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">
-        <defs>
-          <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="rgba(120,200,255,.06)"/></pattern>
-          <radialGradient id="glow"><stop offset="0" stop-color="#3fd0ff" stop-opacity=".35"/><stop offset="1" stop-color="#3fd0ff" stop-opacity="0"/></radialGradient>
-        </defs>
-        <rect width="600" height="440" fill="url(#grid)"/>
-        <path class="map__lake" d="M430 300c40-20 110-10 130 30s-20 90-80 90-110-20-110-60 20-45 60-60Z"/>
-        <g class="map__roads">
-          <path d="M-10 220 C150 200 300 240 610 180"/>
-          <path d="M300 -10 C280 120 320 300 290 450"/>
-          <path d="M40 -10 C120 140 180 300 140 450"/>
-          <path d="M-10 90 C200 110 380 60 610 80"/>
-          <path d="M-10 360 C180 330 360 380 610 350"/>
-          <path d="M520 -10 C480 150 520 260 470 450"/>
-        </g>
-        <path class="map__route" d="M300 205 C360 160 420 120 470 92"/>
-        <g class="pins">
-          <g class="pin is-active" data-i="0" transform="translate(300 205)"><circle class="pin__glow" r="46" fill="url(#glow)"/><circle class="pin__ring" r="14"/><circle class="pin__dot" r="6"/></g>
-          <g class="pin" data-i="1" transform="translate(250 70)"><circle class="pin__glow" r="46" fill="url(#glow)"/><circle class="pin__ring" r="14"/><circle class="pin__dot" r="6"/></g>
-          <g class="pin" data-i="2" transform="translate(500 120)"><circle class="pin__glow" r="46" fill="url(#glow)"/><circle class="pin__ring" r="14"/><circle class="pin__dot" r="6"/></g>
-          <g class="pin" data-i="3" transform="translate(470 345)"><circle class="pin__glow" r="46" fill="url(#glow)"/><circle class="pin__ring" r="14"/><circle class="pin__dot" r="6"/></g>
-        </g>
-      </svg>
+      <div id="map" class="map" aria-label="Map of Quick Wash Motors branches in Prayagraj"></div>
       <div class="loc__card" aria-live="polite">
-        <p class="loc__name">Downtown Studio</p>
-        <p class="loc__addr">Shop 12, Central Plaza, MG Road</p>
+        <p class="loc__name">Phaphamau</p>
+        <p class="loc__addr">Main branch &middot; Phaphamau, Prayagraj</p>
         <dl>
-          <div><dt>Hours</dt><dd class="loc__hours">7:00 am to 10:00 pm</dd></div>
-          <div><dt>Wait now</dt><dd class="loc__wait">~10 min</dd></div>
-          <div><dt>Bays</dt><dd class="loc__bays">6</dd></div>
+          <div><dt>Type</dt><dd class="loc__type">Main branch</dd></div>
+          <div><dt>Service</dt><dd>Branch + doorstep</dd></div>
+          <div><dt>Call</dt><dd><a href="tel:+917269858006">72698 58006</a></dd></div>
         </dl>
         <div class="loc__actions">
           <a class="btn btn--sm loc__dir" href="#" target="_blank" rel="noopener">Directions</a>
-          <a class="link loc__call" href="tel:+910000000000">Call studio</a>
+          <a class="link loc__call" href="https://wa.me/917269858006" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIAL -->
+<!-- TAGLINE -->
 <section class="quote section">
   <blockquote class="reveal">
-    <p>&ldquo;Took my 6-year-old car in for the Signature. My wife asked if I'd bought a new one.&rdquo;</p>
-    <footer>Sample review &middot; Google</footer>
+    <p>&ldquo;Your car care,<br>our responsibility.&rdquo;</p>
+    <footer>Quick Wash &middot; आपकी गाड़ी की सफाई, अब आपके दरवाजे पर</footer>
   </blockquote>
 </section>
 
@@ -243,23 +239,28 @@
     <div class="book__copy">
       <p class="eyebrow">Book in 30 seconds</p>
       <h2 class="title reveal">Your car.<br>Our obsession.</h2>
-      <p>Pick a studio and a time. We confirm on WhatsApp within minutes.</p>
+      <p>Pick a branch or doorstep service and a time. We confirm on WhatsApp. Or call <a class="link" href="tel:+917269858006">72698 58006</a>.</p>
     </div>
     <form class="form" novalidate>
       <label>Your name<input name="name" required autocomplete="name" placeholder="Rahul Sharma"></label>
       <label>Phone<input name="phone" required type="tel" inputmode="tel" autocomplete="tel" placeholder="98765 43210"></label>
       <div class="form__row">
-        <label>Studio
-          <select name="studio"><option>Downtown</option><option>North Avenue</option><option>Airport Road</option><option>Lakeside</option></select>
+        <label>Branch
+          <select name="studio"><option>Phaphamau (Main)</option><option>Naini</option><option>Jhusi</option><option>Jhalwa</option></select>
         </label>
+        <label>Where
+          <select name="where"><option>At the branch</option><option>Doorstep (my home)</option></select>
+        </label>
+      </div>
+      <div class="form__row form__row--1">
         <label>Package
-          <select name="pkg"><option>Express</option><option selected>Signature</option><option>Ceramic</option></select>
+          <select name="pkg"><option selected>Car Wash ₹349</option><option>6 Car Wash Pack ₹999</option><option>Monthly Subscription ₹1,249</option><option>Bike Wash (Showroom) ₹70</option><option>Bike Wash (Doorstep) ₹99</option></select>
         </label>
       </div>
       <div class="form__row">
         <label>Date<input name="date" type="date" required></label>
         <label>Time
-          <select name="time"><option>8:00 am</option><option>10:00 am</option><option>12:00 pm</option><option>2:00 pm</option><option>4:00 pm</option><option>6:00 pm</option><option>8:00 pm</option></select>
+          <select name="time"><option>9:00 am</option><option>11:00 am</option><option>1:00 pm</option><option>3:00 pm</option><option>5:00 pm</option><option>7:00 pm</option></select>
         </label>
       </div>
       <button class="btn btn--wide" type="submit">Confirm on WhatsApp</button>
@@ -273,8 +274,8 @@
 <footer class="foot">
   <div class="foot__big" aria-hidden="true">QUICK WASH</div>
   <div class="foot__row">
-    <p>&copy; 2026 Quick Wash Motors. Demo website.</p>
-    <p><a href="#locations">4 studios</a> &middot; <a href="tel:+910000000000">+91 00000 00000</a> &middot; <a href="#" aria-label="Instagram">Instagram</a></p>
+    <p>&copy; 2026 Quick Wash Motors, Prayagraj &middot; Phaphamau &middot; Naini &middot; Jhusi &middot; Jhalwa</p>
+    <p><a href="tel:+917269858006">+91 72698 58006</a> &middot; <a href="mailto:ysurjeetyadav1995@gmail.com">ysurjeetyadav1995@gmail.com</a></p>
   </div>
 </footer>
 
@@ -283,6 +284,7 @@
 <script src="assets/gsap.min.js"></script>
 <script src="assets/ScrollTrigger.min.js"></script>
 <script src="assets/lenis.min.js"></script>
+<script src="assets/leaflet.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
